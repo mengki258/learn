@@ -3,7 +3,10 @@ package com.mengki.learn.converter;
 import com.mengki.learn.entity.User;
 import com.mengki.learn.entity.UserVO1;
 import com.mengki.learn.entity.UserVO2;
+import com.mengki.learn.entity.UserVO3;
+import org.mapstruct.MapMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -32,4 +35,11 @@ public interface UserCovertBasic {
      * @return
      */
     public UserVO2 toConvertVO2(User source);
+
+    /*
+    转换成用户vo3
+     */
+    @Mapping(source = "id",target = "userId")
+    @Mapping(source = "name",target = "userName")
+    public UserVO3 toConvertVO3(User source);
 }
