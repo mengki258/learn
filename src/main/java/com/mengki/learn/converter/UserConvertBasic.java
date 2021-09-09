@@ -4,9 +4,10 @@ import com.mengki.learn.entity.User;
 import com.mengki.learn.entity.UserVO1;
 import com.mengki.learn.entity.UserVO2;
 import com.mengki.learn.entity.UserVO3;
-import org.mapstruct.MapMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -18,8 +19,8 @@ import org.mapstruct.factory.Mappers;
  * @since 2021/9/10
  */
 @Mapper
-public interface UserCovertBasic {
-    UserCovertBasic INSTANCE = Mappers.getMapper(UserCovertBasic.class);
+public interface UserConvertBasic {
+    UserConvertBasic INSTANCE = Mappers.getMapper(UserConvertBasic.class);
 
     /**
      * 字段数量类型数量相同，利用工具BeanUtils也可以实现类似效果
@@ -41,5 +42,13 @@ public interface UserCovertBasic {
      */
     @Mapping(source = "id",target = "userId")
     @Mapping(source = "name",target = "userName")
+    @Mapping(target = "createTime",ignore = true)
     public UserVO3 toConvertVO3(User source);
+
+
+    //更新bean属性值
+    @Mappings({
+            @Mapping(source = "userName",target = "name")
+    })
+    void updateUser(UserVO3 uservo3, @MappingTarget User user);
 }

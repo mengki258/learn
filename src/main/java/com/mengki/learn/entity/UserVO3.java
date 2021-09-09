@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.mapstruct.Mapping;
 
 /**
  * <p>
@@ -22,5 +23,8 @@ import lombok.NoArgsConstructor;
 public class UserVO3 {
     private Integer userId;
     private String userName;
+
     private String createTime;
+    private String birthPlace;
+
 }

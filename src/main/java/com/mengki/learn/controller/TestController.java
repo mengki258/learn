@@ -1,11 +1,9 @@
 package com.mengki.learn.controller;
 
-import com.mengki.learn.converter.UserCovertBasic;
+import com.mengki.learn.converter.UserConvertBasic;
 import com.mengki.learn.entity.User;
-import com.mengki.learn.entity.UserVO1;
-import com.mengki.learn.entity.UserVO2;
+import com.mengki.learn.entity.UserVO3;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,10 +37,14 @@ public class TestController {
 
         // 使用mapstruct
 
-        log.info("userVO1:" + UserCovertBasic.INSTANCE.toConvertVO1(user));
-        log.info("userVO1转换回实体类user:" + UserCovertBasic.INSTANCE.fromConvertEntity1(UserCovertBasic.INSTANCE.toConvertVO1(user)));
-        log.info("user to user3:"+UserCovertBasic.INSTANCE.toConvertVO3(user));
-
+        log.info("userVO1:" + UserConvertBasic.INSTANCE.toConvertVO1(user));
+        log.info("userVO1转换回实体类user:" + UserConvertBasic.INSTANCE.fromConvertEntity1(UserConvertBasic.INSTANCE.toConvertVO1(user)));
+        log.info("user to user3:"+ UserConvertBasic.INSTANCE.toConvertVO3(user));
+        // 更新bean
+        UserVO3 vo3 = new UserVO3();
+        vo3.setUserName("mengki");
+        UserConvertBasic.INSTANCE.updateUser(vo3,user);
+        log.info("after update user:"+user);
 
         return objectList;
     }
